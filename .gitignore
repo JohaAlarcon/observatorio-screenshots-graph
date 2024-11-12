@@ -1,0 +1,35 @@
+config/credentials.json
+screenshots/
+env/
+.venv/
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Archivos de caché y logs
+*.log
+*.sqlite3
+
+# Archivos de configuración de herramientas
+*.mypy_cache/
+*.pytest_cache/
+.pytest_cache/
+.coverage
+.tox/
+.cache/
+nosetests.xml
+coverage.xml
+
+# Archivos de configuración de Jupyter
+.ipynb_checkpoints/
+
+# Archivos sensibles del proyecto
+config/credentials.json
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
