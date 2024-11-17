@@ -16,7 +16,7 @@ with open("credentials.json", "r") as file:
 USERNAME = config["username"]
 PASSWORD = config["password"]
 CARPETA_DESTINO = config["ruta_destino"]
-URLS = config["urls"]
+URLS = config["graphic_list"]
 
 # Chrome service settings
 service = Service(ChromeDriverManager().install())
@@ -36,18 +36,18 @@ def iniciar_sesion():
     print("Inicio de sesión exitoso.")
     time.sleep(5)  # Additional wait to fully charge after login
 
-def capturar_screenshot(name, url, container_type):
+def capturar_screenshot(name, url, type):
     """Captura el screenshot de la gráfica en la página especificada."""
     driver.get(url)
     time.sleep(5) # Wait for the page to load completely
 
     # Determine the selector according to the type of container
-    if container_type == "chart-container":
+    if type == "chart-container":
         selector = '[data-testid="chart-container"]'
-    elif container_type == "scalar-container":
+    elif type == "scalar-container":
         selector = '[data-testid="scalar-container"]'
-    elif container_type == "chart-legend":
-        selector = '[data-testid="chart-legend"]'
+    elif type == "visualization-root":
+        selector = '[data-testid="visualization-root"]'
     else:
         print(f"Contenedor desconocido para la gráfica '{name}'")
         return
@@ -84,8 +84,8 @@ def main():
     for item in URLS:
         name = item["name"]
         url = item["url"]
-        container_type = item["container_type"]
-        capturar_screenshot(name, url, container_type)
+        type = item["type"]
+        capturar_screenshot(name, url, type)
 
     # Close the browser
     driver.quit()
